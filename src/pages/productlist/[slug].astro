@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import "../../css/custom.css";
+import "../css/reset.css";
 import Buttons from "../../components/NavigationButtons.astro";
 import Banner from "../../components/ReadMoreBanner.astro";
 import { supabase } from "../../lib/supabase.js";
@@ -23,11 +24,18 @@ if (!sted) {
 // Generer alle mulige slugs til Astro's statiske routing
 export async function getStaticPaths() {
   const { createClient } = await import("@supabase/supabase-js");
+
   const supabase = createClient(
     import.meta.env.PUBLIC_SUPABASE_URL,
     import.meta.env.PUBLIC_SUPABASE_KEY,
   );
-  const { data } = await supabase.from("naturomraader").select("slug");
+
+  const { data, error } = await supabase.from("naturomraader").select("slug");
+
+  if (error) {
+    throw error;
+  }
+
   return data.map((sted) => ({
     params: { slug: sted.slug },
   }));
