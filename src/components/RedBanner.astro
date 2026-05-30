@@ -1,0 +1,148 @@
+---
+import "../css/custom.css";
+import "../css/reset.css";
+import Card from "../img/cardGrey.webp";
+import CardPhone from "../img/cardGreyPhone.webp";
+---
+
+<div class="red-banner">
+  <div class="banner-imgs">
+    <img src={Card.src} alt="betalingskort" class="card" />
+    <img src={CardPhone.src} alt="betalingskort på mobil" class="card-phone" />
+  </div>
+  <div class="banner-text-mobile">
+    <h1>Betaler du med Dankort?</h1>
+    <p>
+      Hvis dit kort har Dankort logoet, så kan du være sikker på at du har et
+      Dankort.
+    </p>
+    <p>Har du ikke et Dankort?</p>
+    <a href="/stepbystep">Se hvordan du får ét her</a>
+  </div>
+  <div class="banner-text-desktop">
+    <h1>Betaler du med Dankort?</h1>
+    <p>
+      I Danmark har vi mange valg når det kommer til Betalingskort. Det er dog
+      langt fra alle, der faktisk er Dankort.
+    </p>
+    <p>
+      Hvis dit kort har Dankort logoet, kan du være sikker på at du har et
+      Dankort. Det betyder at du automatisk støtter dansk natur og lokalliv når
+      du betaler med kortet.
+    </p>
+    <p>
+      Dankort kan både fås som fysisk kort og samtidig let lægges på telefonen
+      ligesom mange andre betalingskort.
+    </p>
+    <p>Har du ikke et Dankort?</p>
+    <a href="/stepbystep">Se hvordan du får ét her</a>
+  </div>
+  <img src="/DK_Logo_CMYK.svg" alt="" class="logo" />
+</div>
+
+<style>
+  @font-face {
+    font-family: raleway;
+    src: url(/fonts/Raleway-VariableFont_wght.ttf);
+  }
+  .banner-text-desktop {
+    display: none;
+  }
+  .red-banner {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    padding: 2rem 1rem 2rem 2rem;
+    margin: 1.5rem;
+    background-color: var(--red);
+    border-radius: 25px;
+    box-sizing: border-box;
+  }
+  .card-phone {
+    display: none;
+  }
+  .banner-text-mobile {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+    padding-left: 1rem;
+    justify-content: center;
+  }
+  .banner-text-mobile h1 {
+    font-size: var(--h1-mobile);
+    color: var(--white);
+  }
+  .banner-text-mobile a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: var(--button-mobile);
+    background-color: var(--black);
+    min-width: 141px;
+    max-width: 141px;
+    border-radius: 25px;
+    padding: var(--btn_padding-mobile);
+  }
+  .banner-text-mobile p {
+    font-size: var(--p-mobile);
+    color: var(--white);
+  }
+  .banner-imgs {
+    align-self: center;
+
+    max-width: 12rem;
+  }
+  .logo {
+    position: relative;
+    width: 3rem;
+    top: -1rem;
+    align-self: start;
+  }
+  @media (min-width: 1024px) {
+    .red-banner {
+      padding: 3rem 2rem;
+      margin: 2rem;
+    }
+    .banner-text-mobile {
+      display: none;
+    }
+    .banner-text-desktop {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 1rem;
+      padding-left: 13rem;
+      justify-content: center;
+    }
+    .banner-text-desktop h1 {
+      font-size: var(--h1);
+      color: var(--white);
+    }
+    .banner-text-desktop p {
+      font-size: var(--p);
+      color: var(--white);
+    }
+    .banner-text-desktop a {
+      text-decoration: none;
+      font-size: var(--button);
+      color: var(--white);
+      background-color: var(--black);
+      width: fit-content;
+      border-radius: 25px;
+      padding: var(--btn_padding);
+      align-self: flex-end;
+    }
+    .logo {
+      width: 5rem;
+      top: -1.5rem;
+    }
+    .card-phone {
+      display: block;
+    }
+    .banner-imgs {
+      display: flex;
+      flex-direction: row;
+      max-width: 10rem;
+    }
+  }
+</style>
