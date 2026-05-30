@@ -7,12 +7,12 @@ const currentPath = Astro.url.pathname;
 
 <div class="nav_btns">
   <a href="/" class={`nav-link ${currentPath === "/" ? "active" : ""}`}
-    >Vores koncept</a
+    >Koncept</a
   >
   <a
     href="/detail"
     class={`nav-link ${currentPath === "/detail" ? "active" : ""}`}
-    >Udforsk områderne</a
+    >Områder støttet</a
   >
   <a
     href="/stepbystep"
@@ -26,69 +26,106 @@ const currentPath = Astro.url.pathname;
 
   .nav_btns {
     display: flex;
-    justify-content: center;
-    gap: 1px;
+    flex-direction: column;
+    gap: 1rem;
     position: sticky;
     top: 0;
     z-index: 999;
-    white-space: normal;
+    justify-self: center;
   }
-
   .nav-link {
-    background-color: var(--buttons-grey);
+    background-color: var(--glass-grey);
     color: var(--white);
+    border: var(--glass-border);
     font-weight: var(--title-weight);
     text-decoration: none;
-    backdrop-filter: blur(10px);
-
+    backdrop-filter: blur(5px);
     font-size: var(--button-mobile);
     transition: 0.3s ease;
     padding: var(--btn_padding-mobile);
     border-radius: 25px;
-    margin: 10px;
-    /* box-shadow:
-      inset -1px 2px 5px var(--lightest-grey),
-      inset -1px 2px 2px var(--grey); */
-  }
-  /* FUNKTION */
-  .nav_btns.fixed {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    white-space: nowrap;
+    min-width: 150px;
+    max-width: 150px;
   }
 
   .nav-link.active {
-    background: #4a4a4a;
-    color: white;
+    background: var(--glass-hover);
+    color: var(--white);
+  }
+
+  @media (min-width: 375px) {
+    .nav_btns {
+      display: flex;
+      flex-direction: row;
+    }
+    .nav-link {
+      min-width: 105px;
+      max-width: 110px;
+    }
   }
 
   /* DESKTOP 1024PX */
 
   @media (min-width: 1024px) {
     .nav_btns {
-      gap: 50px;
-      margin: 2rem 0;
+      gap: 2rem;
     }
 
     .nav-link {
       font-size: var(--button);
       padding: var(--btn_padding);
       border-radius: 25px;
-      margin: 10px;
+      min-width: 15rem;
+      background-color: var(--glass-grey-desktop);
+      color: var(--white);
+      border: var(--glass-border-desktop);
     }
 
     .nav-link:hover {
-      background: var(--buttons-hover);
+      background: var(--glass-hover-desktop);
       cursor: pointer;
       color: var(--white);
     }
-
     .nav-link.active {
-      background: #4a4a4a;
-      color: white;
+      background: var(--glass-hover-desktop);
+      color: var(--white);
+    }
+    /* FUNKTION */
+    .nav_btns.fixed {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
     }
   }
 </style>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.innerWidth < 1024) return;
+
+    const nav = document.querySelector(".nav_btns");
+
+    if (!(nav instanceof HTMLElement)) return;
+
+    const spacer = document.createElement("div");
+    spacer.style.height = `${nav.offsetHeight}px`;
+
+    const triggerTop = nav.getBoundingClientRect().top + window.scrollY;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= triggerTop) {
+        if (!nav.classList.contains("fixed")) {
+          nav.parentNode?.insertBefore(spacer, nav);
+          nav.classList.add("fixed");
+        }
+      } else {
+        if (nav.classList.contains("fixed")) {
+          spacer.remove();
+          nav.classList.remove("fixed");
+        }
+      }
+    });
+  });
+</script>

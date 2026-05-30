@@ -3,8 +3,10 @@ import "../css/custom.css";
 import "../css/reset.css";
 ---
 
-<h1>Vi donerer til<br />Den Danske Naturfond</h1>
-<h2>Hver gang du bruger Dankort</h2>
+<div class="hero-title">
+  <h1>Vi donerer til<br />Den Danske Naturfond</h1>
+  <h2>Hver gang du bruger Dankort</h2>
+</div>
 
 <style>
   h1,
@@ -13,22 +15,30 @@ import "../css/reset.css";
   }
   h1 {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: var(--semibold);
   }
   h2 {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: var(--regular);
   }
 
   /* DESKTOP */
   @media (min-width: 1024px) {
     h1 {
-      font-size: 40px;
-      font-weight: 800px;
+      font-size: var(--h1);
+      font-weight: var(--semibold);
     }
     h2 {
-      font-size: 32px;
-      font-weight: 400;
+      font-size: var(--h2);
+      font-weight: var(--regular);
+    }
+    .hero-title {
+      max-width: 33rem;
+    }
+  }
+  @media (min-width: 1440px) {
+    .hero-title {
+      max-width: 35rem;
     }
   }
 </style>

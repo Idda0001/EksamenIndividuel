@@ -5,58 +5,65 @@ import "../css/reset.css";
 
 <footer>
   <div class="footer-info">
-    <img
-      class="logo"
-      src="/DK_Logo_CMYK.svg"
-      alt="Dankort"
-      width="71"
-      height="42"
-    />
-    <h1 class="slogan">Når vi handler sammen</h1>
-    <div class="footer-links">
-      <h2>Dankort</h2>
-      <ul>
-        <li><a href="https://dankort.dk/dankort">Om Dankort</a></li>
-        <li><a href="https://dankort.dk/presse">Presse</a></li>
-        <li>
-          <a href="https://dankort.dk/logo-og-billeder">Download Logoer</a>
-        </li>
-      </ul>
+    <div class="logo-slogan">
+      <img
+        class="logo"
+        src="/DK_Logo_CMYK.svg"
+        alt="Dankort"
+        width="71"
+        height="42"
+      />
+      <h1 class="slogan">Når vi handler sammen</h1>
     </div>
-    <div class="footer-links">
-      <h2>Support</h2>
-      <ul>
-        <li><a href="https://dankort.dk/kontakt-salg">Kontakt salg</a></li>
-        <li>
-          <a href="http://dankort.dk/kontakt-erhverv">Kontakt kundeservice</a>
-        </li>
-        <li>
-          <a href="https://dankort.dk/support-erhverv">Support erhverv</a>
-        </li>
-        <li><a href="https://dankort.dk/support-privat">Support privat</a></li>
-      </ul>
-    </div>
-    <div class="footer-links">
-      <h2>Politikker</h2>
-      <ul>
-        <li>
-          <a
-            href="https://www.nets.eu/GDPR/Pages/Privacy-notice-for-nets.aspx?__hstc=79159691.fdb6e41e4a9888069c31577db7384cf3.1777384377844.1779457862202.1779795305736.13&__hssc=79159691.1.1779795305736&__hsfp=debe404759865c493bbad0bd26bd08b7"
-            >Privatlivspolitikker</a
-          >
-        </li>
-        <li>
-          <a href="https://www.nets.eu/dk-da/Pages/cookie-policy.aspx"
-            >Cookies</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://support.nets.eu/da-DK/article/general-nexi-group-statement?__hstc=79159691.fe425ce03c33d4250e52f36263ecb825.1755247721148.1759946849211.1759991617922.41&__hssc=79159691.1.1759991617922&__hsfp=2836217097"
-            >AEE regulativ</a
-          >
-        </li>
-      </ul>
+    <div class="alle-footer-links">
+      <div class="footer-links">
+        <h2>Dankort</h2>
+        <ul>
+          <li><a href="https://dankort.dk/dankort">Om Dankort</a></li>
+          <li><a href="https://dankort.dk/presse">Presse</a></li>
+          <li>
+            <a href="https://dankort.dk/logo-og-billeder">Download Logoer</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h2>Support</h2>
+        <ul>
+          <li><a href="https://dankort.dk/kontakt-salg">Kontakt salg</a></li>
+          <li>
+            <a href="http://dankort.dk/kontakt-erhverv">Kontakt kundeservice</a>
+          </li>
+          <li>
+            <a href="https://dankort.dk/support-erhverv">Support erhverv</a>
+          </li>
+          <li>
+            <a href="https://dankort.dk/support-privat">Support privat</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h2>Politikker</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.nets.eu/GDPR/Pages/Privacy-notice-for-nets.aspx?__hstc=79159691.fdb6e41e4a9888069c31577db7384cf3.1777384377844.1779457862202.1779795305736.13&__hssc=79159691.1.1779795305736&__hsfp=debe404759865c493bbad0bd26bd08b7"
+              >Privatlivspolitikker</a
+            >
+          </li>
+          <li>
+            <a href="https://www.nets.eu/dk-da/Pages/cookie-policy.aspx"
+              >Cookies</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://support.nets.eu/da-DK/article/general-nexi-group-statement?__hstc=79159691.fe425ce03c33d4250e52f36263ecb825.1755247721148.1759946849211.1759991617922.41&__hssc=79159691.1.1759991617922&__hsfp=2836217097"
+              >AEE regulativ</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="billed-kredit">
       <p>Udvalgte naturfotos: © Jesper Edvardsen / Den Danske Naturfond</p>
@@ -95,6 +102,7 @@ import "../css/reset.css";
   .footer-info h2 {
     font-size: var(--h1-mobile);
     font-weight: var(--semibold);
+    padding-bottom: 1rem;
   }
   footer {
     display: flex;
@@ -180,24 +188,46 @@ import "../css/reset.css";
   @media (min-width: 1024px) {
     footer {
       display: grid;
-      grid-template-columns: 3fr 1.1fr;
+      grid-template-columns: 3fr 1fr;
       gap: 0;
       width: 100%;
-      padding: 64px 80px;
+      padding: 2rem;
       box-sizing: border-box;
     }
     .slogan {
       display: none;
     }
     .footer-info {
+      box-sizing: border-box;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: auto auto;
       align-items: start;
-      gap: 40px;
+      gap: 0;
+      padding: 2rem;
+    }
+    .alle-footer-links {
+      display: flex;
+      justify-content: space-between;
+      grid-column: 2;
+      grid-row: 1;
+      gap: 0.5rem;
+    }
+    .logo-slogan {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .billed-kredit {
+      text-align: left;
+      align-self: center;
+      grid-column: 1/-1;
+      grid-row: 2;
     }
     .footer-nyhedsbrev {
-      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
       text-align: left;
+      padding: 3rem;
     }
     .footer-nyhedsbrev h1 {
       color: var(--white);
@@ -214,6 +244,7 @@ import "../css/reset.css";
     .footer-nyhedsbrev input {
       font-size: 16px;
     }
+
     .billed-kredit p {
       font-size: 14px;
       color: var(--darkest-grey);
