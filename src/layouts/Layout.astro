@@ -25,7 +25,16 @@ import Footer from "../components/Footer.astro";
   </head>
   <body>
     <Header />
-    <slot />
+    <div class="slot-container">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
+
+<style>
+  .slot-container {
+    max-width: 1900px;
+    justify-self: center;
+  }
+</style>
