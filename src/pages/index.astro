@@ -15,63 +15,65 @@ import Partners from "../components/Partners.astro";
 ---
 
 <Layout>
-  <section class="hero">
-    <HeroVideo />
-    <div class="taeller">
-      <DonationTaeller />
+  <main>
+    <section class="hero">
+      <HeroVideo />
+      <div class="taeller">
+        <DonationTaeller />
+      </div>
+      <div class="overskrift">
+        <OverskriftHeroIndex />
+      </div>
+      <!-- 3 KNAPPER -->
+      <!--   <ButtonsNav /> -->
+      <div class="buttons">
+        <Buttons />
+      </div>
+    </section>
+    <div class="icons">
+      <Icons />
     </div>
-    <div class="overskrift">
-      <OverskriftHeroIndex />
-    </div>
-    <!-- 3 KNAPPER -->
-    <!--   <ButtonsNav /> -->
-    <div class="buttons">
-      <Buttons />
-    </div>
-  </section>
-  <div class="icons">
-    <Icons />
-  </div>
-  <div class="koncept_1_1">
-    <div class="koncept_tekst">
-      <h1>Vi donerer til Den Danske Naturfond</h1>
-      <p>
-        Vores koncept er helt enkelt: Brug dit Dankort, når du betaler, og vi
-        donerer 1 øre pr. transaktion til den Danske Naturfond.
-      </p>
-      <p>
-        Hertil donere både vores samarbejdspartnere i form af udvalgte danske
-        butikker og banker også 1 øre pr. Transaktion.
-      </p>
-      <p>
-        Dvs. Der kan blive doneret op til 3 øre for din transaktion, hver gang,
-        du handler med Dankort!
-      </p>
-      <div class="koncept_button">
-        <a href="/detail">Se støttede områder her</a>
+    <div class="koncept_1_1">
+      <div class="koncept_tekst">
+        <h1>Vi donerer til Den Danske Naturfond</h1>
+        <p>
+          Vores koncept er helt enkelt: Brug dit Dankort, når du betaler, og vi
+          donerer 1 øre pr. transaktion til den Danske Naturfond.
+        </p>
+        <p>
+          Hertil donere både vores samarbejdspartnere i form af udvalgte danske
+          butikker og banker også 1 øre pr. Transaktion.
+        </p>
+        <p>
+          Dvs. Der kan blive doneret op til 3 øre for din transaktion, hver
+          gang, du handler med Dankort!
+        </p>
+        <div class="koncept_button">
+          <a href="/detail">Se støttede områder her</a>
+        </div>
+      </div>
+      <div class="koncept_billeder">
+        <img
+          src={skyerbred.src}
+          alt=""
+          class="kant_billede"
+          id="kant_landscape"
+          width="200"
+          height="113"
+        />
+        <img
+          src={surfer.src}
+          alt=""
+          class="kant_billede"
+          id="kant_portrait"
+          width="109"
+          height="145"
+        />
       </div>
     </div>
-    <div class="koncept_billeder">
-      <img
-        src={skyerbred.src}
-        alt=""
-        class="kant_billede"
-        id="kant_landscape"
-        width="200"
-        height="113"
-      />
-      <img
-        src={surfer.src}
-        alt=""
-        class="kant_billede"
-        id="kant_portrait"
-        width="109"
-        height="145"
-      />
-    </div>
-  </div>
-  <Banner />
-  <Partners />
+    <Banner />
+    <Partners />
+  </main>
 </Layout>
 
 <style>

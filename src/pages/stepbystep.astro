@@ -6,76 +6,81 @@ import Buttons from "../components/NavigationButtons.astro";
 import Jumpdown from "../assets/jumpdown.svg";
 import Piggyback from "../img/girls_piggybacking.webp";
 import Smallshop from "../img/small_shop.webp";
-import Mobilsti from "../assets/sti_mobil.svg";
 import DankortIHand from "../img/dankort_i_haand.svg";
 import LogPaa from "../img/logon.svg";
 import Udfyld from "../img/udfyld_detaljer.svg";
 ---
 
 <Layout>
-  <div class="step_2_1">
-    <div class="step_tekst">
-      <h1>Det er nemt at få et Dankort</h1>
-      <p>
-        Følg vores nemme step by step guide, så du hurtigt kan komme i gang med
-        at støtte både natur og lokal butikker.
-      </p>
-      <img
-        src={Jumpdown.src}
-        alt=""
-        class="jump_down_button"
-        id="jump_down_button"
-      />
-    </div>
-    <div class="step_billeder">
-      <img src={Smallshop.src} alt="" class="step_pic" id="desktop_billed" />
-      <img src={Piggyback.src} alt="" class="step_pic" id="mobil_billed" />
-    </div>
-  </div>
-  <div class="buttons">
-    <Buttons />
-  </div>
-  <img src={Mobilsti.src} alt="" class="mobil_sti" />
-  <div class="step_by_step_title" id="steps">
-    <h1>3 nemme steps til Dankort</h1>
-  </div>
-  <div class="step_by_step">
-    <div class="step-wrapper">
-      <div class="step_venstre" id="step_1">
-        <div class="step_v_pic">
-          <img src={LogPaa.src} alt="" id="steps_imgs_border" />
-        </div>
-        <div class="step_v_tekst">
-          <h2>STEP 1</h2>
-          <p>
-            Log ind på din netbank og find frem til deres kortbestillings
-            service.
-          </p>
-        </div>
+  <main>
+    <ul class="breadcrumb">
+      <li><a href="/">Forside</a></li>
+      <li><a href="/stepbystep">Dankort i 3 trin</a></li>
+    </ul>
+    <div class="step_2_1">
+      <div class="step_tekst">
+        <h1>Det er nemt at få et Dankort</h1>
+        <p>
+          Følg vores nemme step by step guide, så du hurtigt kan komme i gang
+          med at støtte både natur og lokal butikker.
+        </p>
+        <img
+          src={Jumpdown.src}
+          alt=""
+          class="jump_down_button"
+          id="jump_down_button"
+        />
       </div>
-      <div class="step_hoejre">
-        <div class="step_h_pic" id="step_2">
-          <img src={Udfyld.src} alt="" id="steps_imgs_border" />
-        </div>
-        <div class="step_h_tekst">
-          <h2>STEP 2</h2>
-          <p>
-            Vælg Dankort eller Visa Dankort og udfyld de påkrævede
-            informationer.
-          </p>
-        </div>
-      </div>
-      <div class="step_venstre" id="step_3">
-        <div class="step_v_pic">
-          <img src={DankortIHand.src} alt="" id="steps_imgs_border" />
-        </div>
-        <div class="step_v_tekst">
-          <h2>STEP 3</h2>
-          <p>Vent på at kortet leveres i din postkasse. Så nemt er det!</p>
-        </div>
+      <div class="step_billeder">
+        <img src={Smallshop.src} alt="" class="step_pic" id="desktop_billed" />
+        <img src={Piggyback.src} alt="" class="step_pic" id="mobil_billed" />
       </div>
     </div>
-  </div>
+    <div class="buttons">
+      <Buttons />
+    </div>
+    <!-- <img src={Mobilsti.src} alt="" class="mobil_sti" /> -->
+    <div class="step_by_step_title" id="steps">
+      <h1>3 nemme steps til Dankort</h1>
+    </div>
+    <div class="step_by_step">
+      <div class="step-wrapper">
+        <div class="step_venstre" id="step_1">
+          <div class="step_v_pic">
+            <img src={LogPaa.src} alt="" id="steps_imgs_border" />
+          </div>
+          <div class="step_v_tekst">
+            <h2>STEP 1</h2>
+            <p>
+              Log ind på din netbank og find frem til deres kortbestillings
+              service.
+            </p>
+          </div>
+        </div>
+        <div class="step_hoejre">
+          <div class="step_h_pic" id="step_2">
+            <img src={Udfyld.src} alt="" id="steps_imgs_border" />
+          </div>
+          <div class="step_h_tekst">
+            <h2>STEP 2</h2>
+            <p>
+              Vælg Dankort eller Visa Dankort og udfyld de påkrævede
+              informationer.
+            </p>
+          </div>
+        </div>
+        <div class="step_venstre" id="step_3">
+          <div class="step_v_pic">
+            <img src={DankortIHand.src} alt="" id="steps_imgs_border" />
+          </div>
+          <div class="step_v_tekst">
+            <h2>STEP 3</h2>
+            <p>Vent på at kortet leveres i din postkasse. Så nemt er det!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </Layout>
 
 <script>
@@ -92,6 +97,22 @@ import Udfyld from "../img/udfyld_detaljer.svg";
 </script>
 
 <style>
+  .breadcrumb {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+  .breadcrumb a {
+    text-decoration: none;
+    font-size: var(--p-mobile);
+    color: var(--dark-grey);
+  }
+  .breadcrumb li:not(:last-child)::after {
+    content: " >";
+    color: var(--dark-grey);
+  }
   .buttons {
     display: flex;
     align-items: center;
@@ -158,7 +179,9 @@ import Udfyld from "../img/udfyld_detaljer.svg";
     height: fit-content;
 
     overflow: hidden;
-    background-image: url(../assets/mobil_step_baggrund.svg);
+    background-image: url(../src/img/mobile-background.svg);
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .step-wrapper {
     display: flex;
@@ -168,13 +191,11 @@ import Udfyld from "../img/udfyld_detaljer.svg";
   .step_venstre {
     display: flex;
     flex-direction: row;
-    /* transform: translateX(-4rem); */
   }
   .step_hoejre {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    /* transform: translateX(4rem); */
   }
   .step_v_pic img,
   .step_h_pic img {
@@ -195,24 +216,10 @@ import Udfyld from "../img/udfyld_detaljer.svg";
   .step_h_pic {
     order: 2;
   }
-  .mobil_sti {
-    border-radius: 0px;
-    position: absolute;
-    height: 48rem;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 70vh;
-    z-index: -1;
-  }
+
   .step_by_step_title {
     text-align: center;
     padding: 2rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .mobil_sti {
-      top: 70vh;
-    }
   }
 
   @media (min-width: 1024px) {
@@ -253,7 +260,6 @@ import Udfyld from "../img/udfyld_detaljer.svg";
 
       padding: 0 5rem;
       margin: 0 auto;
-      background-repeat: repeat;
     }
     .step-wrapper {
       max-width: 1200px;
@@ -283,42 +289,11 @@ import Udfyld from "../img/udfyld_detaljer.svg";
     .jump_down_button {
       width: 3rem;
     }
-    .mobil_sti {
-      height: 75rem;
-      top: 80vh;
+    .breadcrumb a {
+      font-size: var(--p);
     }
-  }
-  @media (min-width: 1400px) {
-    .mobil_sti {
-      height: 80rem;
-      top: 65vh;
+    .breadcrumb {
+      gap: 1rem;
     }
-  }
-  @media (min-width: 2500px) {
-    .mobil_sti {
-      height: 75rem;
-      top: 38vh;
-    }
-  }
-  /* FUNKTIONER */
-  .buttons.fixed {
-    position: fixed;
-    top: 0;
-    left: 295px;
-    z-index: 1000;
   }
 </style>
-
-<script>
-  const buttons = document.querySelector(".buttons") as HTMLElement;
-
-  const startPosition = buttons.offsetTop;
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > startPosition) {
-      buttons.classList.add("fixed");
-    } else {
-      buttons.classList.remove("fixed");
-    }
-  });
-</script>

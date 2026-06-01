@@ -18,6 +18,10 @@ console.log("Rows:", naturomraader?.length);
 ---
 
 <Layout>
+  <ul class="breadcrumb">
+    <li><a href="/">Forside</a></li>
+    <li><a href="/detail">Områder støttet</a></li>
+  </ul>
   <main>
     <!-- HERO BILLEDER OG TEKST, DESKTOP-->
     <section class="hero-box">
@@ -187,6 +191,22 @@ console.log("Rows:", naturomraader?.length);
   @font-face {
     font-family: raleway;
     src: url(/fonts/Raleway-VariableFont_wght.ttf);
+  }
+  .breadcrumb {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+  .breadcrumb a {
+    text-decoration: none;
+    font-size: var(--p-mobile);
+    color: var(--dark-grey);
+  }
+  .breadcrumb li:not(:last-child)::after {
+    content: " >";
+    color: var(--dark-grey);
   }
 
   .hero-desktop,
@@ -531,6 +551,12 @@ console.log("Rows:", naturomraader?.length);
       align-items: center;
       margin-top: 2rem;
       position: relative;
+    }
+    .breadcrumb a {
+      font-size: var(--p);
+    }
+    .breadcrumb {
+      gap: 1rem;
     }
   }
 </style>

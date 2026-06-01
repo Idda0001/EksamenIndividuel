@@ -1,9 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import "../../css/custom.css";
-import "../css/reset.css";
+import "../../css/reset.css";
 import Buttons from "../../components/NavigationButtons.astro";
-import Banner from "../../components/ReadMoreBanner.astro";
 import { supabase } from "../../lib/supabase.js";
 
 // Hent slug fra URL
@@ -44,10 +43,16 @@ export async function getStaticPaths() {
 
 <Layout>
   <main>
+    <ul class="breadcrumb">
+      <li><a href="/">Forside</a></li>
+      <li><a href="/detail">Områder støttet</a></li>
+      <li><a href="">{sted.navn}</a></li>
+    </ul>
     <!-- MOBIL BILLEDE 1 -->
     <img src={sted.billede_url} alt={sted.navn} class="img_mobile-1" />
-
-    <Buttons />
+    <div class="buttons-wrapper">
+      <Buttons />
+    </div>
 
     <!-- OVERSKRIFT -->
     <h1>{sted.navn}</h1>
@@ -62,17 +67,48 @@ export async function getStaticPaths() {
       <div class="nature-text">
         <h2>{sted.undertitel}</h2>
         <p>{sted.beskrivelse}</p>
+        <p class="kredit-p">
+          (Dette tekst afsnit er skrevet ud fra: https://naturfonden.dk/ efter
+          aftale med naturfonden)
+        </p>
       </div>
     </section>
 
     <!-- MOBIL BILLEDE 2 -->
     <img src={sted.billede_url_2} alt={sted.navn} class="img_mobile-2" />
 
-    <Banner />
+    <div class="banner_readmore">
+      <div class="tekst_box_left">
+        <h2>Læs mere om samarbejdet her</h2>
+        <p>
+          Dankort Øremærket blev lanceret i 2021 som en ordning, hvor der
+          automatisk doneres 1 øre til Den Danske Naturfond, hver gang du
+          betaler med dit Dankort. Initiativet blev skabt for at støtte vild,
+          dansk natur og sikre store, beskyttede naturområder i Danmark.
+        </p>
+        <a href="https://naturfonden.dk/dankort/">Tag mig til Naturfonden</a>
+      </div><img src={sted.billede_url_3} alt="" class="img-readmore" />
+    </div>
   </main>
 </Layout>
 
 <style>
+  .breadcrumb {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+  .breadcrumb a {
+    text-decoration: none;
+    font-size: var(--p-mobile);
+    color: var(--dark-grey);
+  }
+  .breadcrumb li:not(:last-child)::after {
+    content: " >";
+    color: var(--dark-grey);
+  }
   main {
     max-width: 1200px;
     margin: 0 auto;
@@ -83,24 +119,32 @@ export async function getStaticPaths() {
   h1 {
     display: block;
     margin: 0 auto;
-    padding: 25px;
   }
 
   h1 {
     font-size: var(--h1-mobile);
-    font-weight: var(--bold);
-    margin-bottom: 1rem;
+    font-weight: var(--semibold);
+    color: var(--black);
+    padding: 2rem;
+    padding-bottom: 0.5rem;
   }
 
   h2 {
     font-size: var(--h2-mobile);
     font-weight: var(--semibold);
-    margin-bottom: 1rem;
+    color: var(--darkest-grey);
+    padding: 0 2rem;
   }
 
   p {
     font-size: var(--p-mobile);
     font-weight: var(--regular);
+    color: var(--black);
+    padding: 2rem;
+  }
+  .kredit-p {
+    font-size: 10px;
+    padding: 0 2rem;
   }
 
   .collage-wrapper {
@@ -110,8 +154,45 @@ export async function getStaticPaths() {
   .img_mobile-1,
   .img_mobile-2 {
     display: block;
-    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 25px;
     min-width: 100%;
+  }
+  .banner_readmore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner_readmore h2 {
+    padding-top: 2rem;
+    color: var(--black);
+  }
+  .banner_readmore p {
+    text-align: left;
+  }
+
+  .banner_readmore a {
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--red);
+    width: fit-content;
+    font-size: var(--p-mobile);
+    padding: 10px 15px;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+
+    align-self: center;
+  }
+
+  .img-readmore {
+    width: 70%;
+    border-radius: 25px;
+    margin: 1rem 0;
+  }
+  .tekst_box_left {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
   }
 
   @media (min-width: 1024px) {
@@ -121,11 +202,11 @@ export async function getStaticPaths() {
 
     h1 {
       font-size: var(--h1);
-      margin: 0 auto;
+      text-align: center;
     }
 
-    h2 {
-      font-size: var(--h2);
+    .nature-text h2 {
+      display: none;
     }
 
     p {
@@ -137,12 +218,11 @@ export async function getStaticPaths() {
       flex-direction: row;
       justify-content: space-between;
       margin: 0 auto;
-      gap: 100px;
     }
 
-    .nature-text,
-    h1 {
-      max-width: 350px;
+    .nature-text {
+      max-width: 450px;
+      padding-left: 1rem;
     }
 
     .img_mobile-1,
@@ -166,15 +246,52 @@ export async function getStaticPaths() {
     }
 
     .detail-img1 {
-      top: 0;
-      left: 0;
-      z-index: 1;
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 2;
     }
 
     .detail-img2 {
-      top: 120px;
-      left: 80px;
-      z-index: 2;
+      position: absolute;
+      top: 14rem;
+      left: 6rem;
+      z-index: 1;
+    }
+    .banner_readmore {
+      flex-direction: row;
+    }
+    .img-readmore {
+      height: 20rem;
+      width: 20rem;
+      object-fit: cover;
+      margin-right: 2rem;
+      margin-top: 5rem;
+    }
+    .banner_readmore h2 {
+      font-size: var(--h2);
+      padding-top: 2rem;
+      color: var(--black);
+    }
+    .banner_readmore p {
+      font-size: var(--p);
+    }
+
+    .banner_readmore a {
+      font-size: var(--p);
+      padding: 15px 20px;
+    }
+    .kredit-p {
+      font-size: 14px;
+    }
+    .buttons-wrapper {
+      padding-top: 2rem;
+    }
+    .breadcrumb a {
+      font-size: var(--p);
+    }
+    .breadcrumb {
+      gap: 1rem;
     }
   }
 </style>
