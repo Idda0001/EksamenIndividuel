@@ -5,6 +5,8 @@ import Layout from "../layouts/Layout.astro";
 import Buttons from "../components/NavigationButtons.astro";
 import { supabase } from "../lib/supabase.js";
 import kort from "../assets/kort.svg";
+import DankortHimmel from "../img/dankortHimmel.webp";
+import FondenHimmel from "../img/fondenHimmel.webp";
 
 const { data: naturomraader, error } = await supabase
   .from("naturomraader")
@@ -92,31 +94,42 @@ console.log("Rows:", naturomraader?.length);
             ))
         }
       </div>
+      <div class="card-side">
+        <!-- CARD VED SIDEN AF KORTET -->
+        <div class="map-card" id="map-card">
+          <!-- STANDARD CARD (vises først) -->
+          <div class="card-default" id="card-default">
+            <h1>
+              Klik på de røde prikker for at læse om de områder som Dankort
+              donerer til
+            </h1>
+          </div>
 
-      <!-- CARD VED SIDEN AF KORTET -->
-      <div class="map-card" id="map-card">
-        <!-- STANDARD CARD (vises først) -->
-        <div class="card-default" id="card-default">
-          <h1>
-            Klik på de røde prikker for at læse om de områder som Dankort
-            donerer til
-          </h1>
+          <!-- DYNAMISK CARD (skifter når man klikker en pin) -->
+
+          <div class="card-detail" id="card-detail" style="display: none;">
+            <h1 id="card-navn"></h1>
+            <h2 id="card-undertitel" class="card-undertitel"></h2>
+            <p id="card-preview" class="card-preview"></p>
+
+            <a id="card-laes-mere" href="">
+              <button>Læs mere →</button>
+            </a>
+          </div>
         </div>
 
-        <!-- DYNAMISK CARD (skifter når man klikker en pin) -->
-        <div class="card-detail" id="card-detail" style="display: none;">
-          <h1 id="card-navn"></h1>
-          <h2 id="card-undertitel" class="card-undertitel"></h2>
-          <p id="card-preview" class="card-preview"></p>
-
-          <a id="card-laes-mere" href="">
-            <button>Læs mere →</button>
-          </a>
+        <div class="card-billeder">
+          <img
+            id="card-billede1"
+            src={DankortHimmel.src}
+            alt="Dankort Øremærket"
+          />
+          <img
+            id="card-billede2"
+            src={FondenHimmel.src}
+            alt="Den Danske Naturfond"
+          />
         </div>
-      </div>
-      <div class="card-billeder">
-        <img id="card-billede1" src="" alt="" />
-        <img id="card-billede2" src="" alt="" />
       </div>
     </div>
   </main>
@@ -148,6 +161,7 @@ console.log("Rows:", naturomraader?.length);
       const billede1 = el.dataset.billede1;
       const billede2 = el.dataset.billede2;
       const slug = el.dataset.slug;
+      const defaultbilleder = el.dataset.defaultbilleder;
 
       if (cardNavn) cardNavn.textContent = navn ?? "";
       if (cardUndertitel) cardUndertitel.textContent = undertitel ?? "";
@@ -379,7 +393,7 @@ console.log("Rows:", naturomraader?.length);
 
     h2 {
       font-size: var(--h2);
-      margin-bottom: 1.5rem;
+      margin: 3rem 0;
     }
 
     p {
@@ -397,6 +411,7 @@ console.log("Rows:", naturomraader?.length);
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
+      margin-bottom: 5rem;
     }
 
     .hero-photos {
@@ -449,16 +464,34 @@ console.log("Rows:", naturomraader?.length);
 
     /* KORTET — lidt mindre på desktop */
     .map-container {
-      width: 45%;
+      width: 55%;
       flex-shrink: 0;
       margin: 0;
     }
+    .card-billeder {
+      width: 100%;
+      display: flex;
+      gap: 0;
+    }
+    #card-billede1,
+    #card-billede2 {
+      width: 200px;
+      height: 284px;
+      border-radius: 25px;
+      object-fit: cover;
+    }
+
+    .card-side {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
 
     .map-card {
-      width: 45%;
-      min-height: 400px;
-
-      top: 2rem;
+      width: 400px;
+      min-height: 210px;
+      margin-top: 0;
     }
 
     .card-undertitel {
