@@ -33,8 +33,10 @@ import Footer from "../components/Footer.astro";
 </html>
 
 <style>
-  .slot-container {
-    max-width: 1900px;
-    justify-self: center;
+  @media (min-width: 1024px) {
+    .slot-container {
+      max-width: 1900px;
+      justify-self: center;
+    }
   }
 </style>

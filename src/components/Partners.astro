@@ -1,41 +1,216 @@
 ---
-import "../css/custom.css";
-import "../css/reset.css";
+import { supabase } from "../lib/partnere.js";
+import Partnere from "../assets/partnere.svg";
 
-import Emmerys from "../img/Emmerys.svg";
-import FaellesKassen from "../img/faellesKassen.svg";
-import FasterOikos from "../img/fasterOikos.svg";
-import Flowering from "../img/Flowering.webp";
-import Genbyg from "../img/Genbyg.svg";
-import Kirppu from "../img/Kirppu.svg";
-import Loeberen from "../img/loeberen.webp";
-import LollandsBank from "../img/lollandsBank.webp";
-import Merkur from "../img/merkur.svg";
-import RedMaden from "../img/redMaden.webp";
-import RiseSparekasse from "../img/RiseSparekasse.svg";
-import Sport24 from "../img/sport-24.svg";
-import Sportigan from "../img/sportigan.svg";
+const { data: partnere, error } = await supabase
+  .from("partnere")
+  .select("*")
+  .order("id");
+
+if (error) throw error;
 ---
 
-<div class="partners">
-  <img src={Emmerys.src} alt="" />
-  <img src={FaellesKassen.src} alt="" />
-  <img src={FasterOikos.src} alt="" />
-  <img src={Flowering.src} alt="" />
-  <img src={Genbyg.src} alt="" />
-  <img src={Kirppu.src} alt="" />
-  <img src={Loeberen.src} alt="" />
-  <img src={LollandsBank.src} alt="" />
-  <img src={Merkur.src} alt="" />
-  <img src={RedMaden.src} alt="" />
-  <img src={RiseSparekasse.src} alt="" />
-  <img src={Sport24.src} alt="" />
-  <img src={Sportigan.src} alt="" />
+<div class="section-start">
+  <h2 class="section-small-title">SAMMEN GØR VI EN FORSKEL</h2>
+  <h1 class="section-title">Vores samarbejdspartnere</h1>
+  <p class="section-description">
+    Dankort Øremærket skabes i fællesskab med virksomheder og organisationer,
+    der ligesom os, ønsker at give mere tilbage til naturen
+  </p>
 </div>
 
+<section class="partner-grid">
+  {
+    partnere.map((partner) => (
+      <>
+        <div class="partner-card-img">
+          <a href={`${partner.slug}`} class="partner-card">
+            <div class="partner-content">
+              <img
+                class="partner-logo"
+                src={partner.logo_url}
+                alt={partner.navn}
+              />
+
+              <span class="partner-type">{partner.type}</span>
+              <p class="partner-navn">{partner.navn}</p>
+              <p class="partner-description">{partner.beskrivelse}</p>
+            </div>
+          </a>
+          <div class="partner-image">
+            <img src={partner.billed_url} alt={partner.navn} />
+          </div>
+        </div>
+      </>
+    ))
+  }
+</section>
+<div class="flere-kommer">
+  <img src={Partnere.src} alt="" class="blue-people" />
+  <h2>Flere partnere på vej</h2>
+</div>
 <style>
-  .partners img {
-    width: 5rem;
+  .partner-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .partner-card {
+    background: var(--lightest-grey);
+    border-radius: 25px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--black);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .partner-content {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .partner-logo {
+    height: 50px;
+    width: 80px;
+    object-fit: contain;
+    align-self: left;
+  }
+
+  .partner-type {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 1rem;
+    border-radius: 25px;
+    background: var(--glass-grey-desktop);
+    border: var(--glass-border);
+    font-size: 10px;
+    width: fit-content;
+    font-weight: var(--semibold);
+    color: var(--black);
+  }
+
+  .partner-description {
+    font-size: var(--p-mobile);
+    padding: 1rem 0;
+    text-align: left;
+    color: var(--black);
+    max-width: 200px;
+  }
+  .partner-card-img {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+  }
+  .partner-image img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: cover;
+    object-position: center;
+    border-radius: 25px;
+  }
+  .partner-image {
+    align-content: center;
+    text-align: right;
+    width: 50%;
+  }
+  .section-title {
+    font-size: var(--h1-mobile);
+    padding-top: 0.25rem;
+    color: var(--black);
+    font-weight: var(--semibold);
+  }
+  .section-small-title {
+    font-size: 11px;
+    color: var(--red);
+    font-weight: var(--semibold);
+  }
+  .section-start {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    padding: 2rem;
+  }
+  .section-description {
+    font-size: var(--p-mobile);
+    padding-top: 1rem;
+    color: var(--black);
+  }
+  .partner-navn {
+    font-size: var(--p-mobile);
+    padding-top: 1rem;
+    text-align: left;
+    font-weight: var(--semibold);
+  }
+  .blue-people {
+    width: 60px;
     height: auto;
+  }
+  .flere-kommer h2 {
+    font-size: var(--h2-mobile);
+    color: var(--darkest-grey);
+  }
+  .flere-kommer {
+    padding-top: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding: 5rem;
+    }
+    .section-title {
+      font-size: var(--h1);
+    }
+    .section-description {
+      font-size: var(--p);
+    }
+    .section-small-title {
+      font-size: var(--p);
+    }
+    .partner-logo {
+      width: 120px;
+      height: 60px;
+    }
+    .partner-card {
+      height: 300px;
+    }
+    .partner-description {
+      font-size: var(--p);
+      max-width: 390px;
+    }
+    .partner-type {
+      font-size: 15px;
+    }
+    .partner-navn {
+      font-size: var(--p);
+    }
+    .partner-image {
+      max-height: 300px;
+    }
+    .blue-people {
+      width: 90px;
+      height: auto;
+    }
+    .flere-kommer h2 {
+      font-size: var(--p);
+    }
+    .flere-kommer {
+      padding-top: 2.5rem;
+    }
+    .section-start {
+      padding: 5rem;
+    }
   }
 </style>
