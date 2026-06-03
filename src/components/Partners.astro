@@ -58,8 +58,12 @@ if (error) throw error;
   }
 
   .partner-card {
-    background: var(--lightest-grey);
+    background: var(--white);
+    box-shadow:
+      -10px -10px 15px var(--light-lightest-grey),
+      inset -10px -10px 15px var(--light-lightest-grey);
     border-radius: 25px;
+    border: var(--glass-border);
     overflow: hidden;
     text-decoration: none;
     color: var(--black);
@@ -88,10 +92,13 @@ if (error) throw error;
 
   .partner-type {
     display: inline-block;
+    box-shadow:
+      -10px -10px 15px var(--light-lightest-grey),
+      inset -10px -10px 15px var(--light-lightest-grey);
     padding: 10px 15px;
     margin-top: 1rem;
     border-radius: 25px;
-    background: var(--glass-grey-desktop);
+    /* background: var(--light-grey); */
     border: var(--glass-border);
     font-size: 10px;
     width: fit-content;
@@ -114,7 +121,6 @@ if (error) throw error;
   .partner-image img {
     height: 100%;
     width: 100%;
-
     object-fit: cover;
     object-position: center;
     border-radius: 25px;
@@ -184,7 +190,7 @@ if (error) throw error;
       height: 60px;
     }
     .partner-card {
-      height: 300px;
+      height: 350px;
     }
     .partner-description {
       font-size: var(--p);
@@ -197,7 +203,7 @@ if (error) throw error;
       font-size: var(--p);
     }
     .partner-image {
-      max-height: 300px;
+      max-height: 350px;
     }
     .blue-people {
       width: 90px;
@@ -211,6 +217,9 @@ if (error) throw error;
     }
     .section-start {
       padding: 5rem;
+    }
+    .partner-content {
+      padding-left: 2.5rem;
     }
   }
 </style>
