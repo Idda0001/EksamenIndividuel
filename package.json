@@ -14,5 +14,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
     "astro": "^6.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/netlify": "^7.0.13"
   }
 }
